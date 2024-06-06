@@ -13,26 +13,46 @@ def user_login(request):
 			user = authenticate(request, email=email, password=password)
 			if user is not None:
 				login(request, user)
+				messages.success(request, "You have logged in successfully")
 				# Redirect to the home page
 				return redirect("home")
 			else:
 				context["login_form"] = login_form
-				messages.error(request, "Invalid email or password")
 				# Display an error message and the login form
+				messages.error(request, "Invalid email or password")
 
-			
-			# Authenticate the user
-			# If the user is authenticated, redirect to the home page
-			# If the user is not authenticated, display an error message
-			# and the login form
 	else:
 		login_form = LoginForm()
 		context["login_form"] = login_form
 	return render(request, "login.html", context)
 
+def user_signup(request):
+	context = {}
+	if request.method == "POST":
+		signup_form = CustomUserCreationForm(request.POST)
+		if signup_form.is_valid():
+			signup_form.save()
+			email = signup_form.cleaned_data.get("email")
+			raw_password = signup_form.cleaned_data.get("password1")
+			print(email, raw_password)
+			print(request.POST)
+			user = authenticate(email=email, password=raw_password)
+			login(request, user)
+			messages.success(request, "You have signed up successfully")
+			return redirect("home")
+		else:
+			context["signup_form"] = signup_form
+			messages.error(request, "Invalid information")
+
+	else:
+		signup_form = CustomUserCreationForm()
+		context["signup_form"] = signup_form
+	return render(request, "signup.html", context)
+
 def user_logout(request):
 	logout(request)
-	return redirect("login")
+	messages.success(request, "You have logged out successfully")
+	return redirect("home")
 
 
 def home (request):
