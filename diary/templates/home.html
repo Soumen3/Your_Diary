@@ -1,8 +1,37 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title  %} Your Diary {% endblock title  %}
+{% block css %}
+	<link rel="stylesheet" href="{% static "css/home.css" %}">
+{% endblock css %}
 
 {% block body  %}
-	<h1>Home page</h1>
-	<a href={% url "logout" %}>Logout</a>
+	<div class="container home-content">
+		<div class="tag-line">
+			<p class="tag-text">Discover Yourself With A Personalized Digital Diary</p> 
+			<p class="about-text"> Capture Moments, Reflect on Your Journey, and Ignite personal Growth.  </p>
+			<a href="{% url 'signup' %}" class="btn btn-dark rounded">Get Started</a>
+		</div>
+		<div class="home-image">
+			<img src="{% static "media/home.png" %}" alt="" class="home-img">
+		</div>
+	</div>
+	<div class="features">
+		<div class="accessibility feature-item">
+			<i class="bi bi-phone-vibrate-fill"></i>
+			<p class="feature-title">Accessibility</p>
+			<p class="features-text"> Access Your Diary On the Go from Any Device, Ensuring Seamless Availability </p>
+		</div>
+		<div class="simplicity feature-item">
+			<i class="bi bi-lightbulb-fill"></i>
+			<p class="feature-title">Simplicity</p>
+			<p class="features-text"> Effortless, Capture Your Thoughts with Ease in a User-Friendly Interface. </p>
+		</div>
+		<div class="security feature-item">
+			<i class="bi bi-shield-fill-check"></i>
+			<p class="feature-title">Security</p>
+			<p class="features-text">Keep Your Digital Diary Entries Confidential with Robust Encryption. </p>
+		</div>
+	</div>
 {% endblock body  %}

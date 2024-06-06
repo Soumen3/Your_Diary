@@ -1,0 +1,17 @@
+.nav-items{
+	justify-content: space-around;
+}
+.logo{
+	height: 3rem;
+}
+.main-nav-item{
+	gap: 2rem;
+}
+
+.bg-transparant{
+	background: transparent !important;
+}
+
+.auth-items{
+	gap: 5px;
+}

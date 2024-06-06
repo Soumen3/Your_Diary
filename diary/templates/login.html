@@ -1,20 +1,32 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} Login {% endblock title %}
+
+{% block css %}
+	<link rel="stylesheet" href="{% static "css/login.css" %}">
+{% endblock css %}
 
 {% block body  %}
 	<h1>Login</h1>
-	<form action="" method="post">{% csrf_token %}
-		{% for field in login_form %}
-			<div class="form-group">
-				{{field.label_tag}} {{field}} <small class='text-warning'>{{field.errors|striptags}}</small>
-			</div>
-		{% endfor %}
-		<input type="submit" class="btn btn-primary" value='Submit'>
-	
-		{% if login_form.non_field_errors %}
-			{% for error in login_form.non_field_errors %}
-				<p class=" alert alert-danger my-3">{{error}}</p>
+	<div class="container login-page">
+		<form action="" method="post" class="login-form">{% csrf_token %}
+			{% for field in login_form %}
+				<div class="form-group">
+					{{field.label_tag}} {{field}} <small class='text-warning'>{{field.errors|striptags}}</small>
+				</div>
 			{% endfor %}
-		{% endif %}
-	</form>
+			<input type="submit" class="btn btn-primary" value='Submit'>
+		
+			{% if login_form.non_field_errors %}
+				{% for error in login_form.non_field_errors %}
+					<p class=" alert alert-danger my-3">{{error}}</p>
+				{% endfor %}
+			{% endif %}
+		</form>
+		<div class="image">
+			<img src="{% static "media/login.png" %}" alt="" class="login-img">
+		</div>
+	</div>
+	
+
 {% endblock body  %}
