@@ -1,0 +1,36 @@
+.login-page{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	/* background-color: #f1f1f1; */
+	border: 1px solid #161616;
+	border-radius: 5px;
+}
+
+.image{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 50%;
+	height: 100%;
+	/* background-image: url(../images/login.jpg); */
+	background-size: cover;
+	background-position: center;
+	border-left: 1px solid #161616;
+}
+
+.login-img{
+	height: 50vh;
+	z-index: -10;
+}
+
+.login-form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	height: 100%;
+	row-gap: 10px;
+}
