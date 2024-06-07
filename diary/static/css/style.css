@@ -28,3 +28,42 @@
 	border: none !important;
 	padding: 0 !important;
 }
+
+
+/* notification  */
+.alert{
+	width: fit-content;
+    animation: slideInFromRight 0.5s forwards, slideOutToRight 0.5s forwards;
+    animation-delay: 0s, 3s;
+}
+.alert-error{
+	background-color: #f44336;
+	color: white;
+}
+.message-section{
+	position: fixed;
+	/* bottom: 0; */
+	right: 0;
+	z-index: 1000;
+	
+}
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
