@@ -1,11 +1,14 @@
 .nav-items{
 	justify-content: space-around;
 }
+
 .logo{
 	height: 3rem;
 }
+
 .main-nav-item{
-	gap: 2rem;
+	width: 50%;
+    justify-content: space-evenly;
 }
 
 .bg-transparant{
@@ -14,8 +17,14 @@
 
 .auth-items{
 	gap: 5px;
+	width: fit-content;
 }
 
 .btn{
 	border-radius: 30px !important;
+}
+
+.navbar-toggler{
+	border: none !important;
+	padding: 0 !important;
 }

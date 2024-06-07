@@ -1,21 +1,40 @@
 {% extends "base.html" %}
+{% load static %}
+{% block css %}
+	<link rel="stylesheet" href="{% static "css/signup.css" %}">
+{% endblock css %}
 
 {% block title  %} Sign Up {% endblock title  %}
+
 {% block body %}
-	<h1>Sign Up</h1>
-	<form method="post"  novalidate >{% csrf_token %}
-		{% for field in signup_form %}
-			<div class="form-group">
-				{{field.label_tag}} {{field}} <small class='text-warning'>{{field.errors|striptags}}</small>
+	<div class="container signup-page">
+		<div class="form-part">
+			<p class="heading">Sign Up</p>
+			<form method="post" class="signup-form"  novalidate >{% csrf_token %}
+				{% for field in signup_form %}
+					<div class="coolinput">
+						<label for="{{field.id_for_label}}" class="text">{{field.label}}</label>
+						{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
+					</div>
+				{% endfor %}
+				<input type="submit" class="btn btn-dark" value='Sign up'>
+			
+				{% if signup_form.non_field_errors %}
+					{% for error in signup_form.non_field_errors %}
+						<p class=" alert alert-danger my-3">{{error}}</p>
+					{% endfor %}
+				{% endif %}
+			</form>
+
+			<div class="extra">
+				<p class='login-text'>Already have an account? <a href="{% url 'login' %}">Login</a></p>
 			</div>
-		{% endfor %}
-        <input type="submit" class="btn btn-primary" value='Submit'>
-    
-		{% if signup_form.non_field_errors %}
-			{% for error in signup_form.non_field_errors %}
-				<p class=" alert alert-danger my-3">{{error}}</p>
-			{% endfor %}
-		{% endif %}
-	</form>
+		</div>
+		<div class="image">
+			<img src="{% static "media/signup.png" %}" alt="" class="signup-img">
+		</div>
+	</div>
+
+	
 {% endblock body %}
 
