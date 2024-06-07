@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import User
+from .models import User, Todo
 
 class CustomUserCreationForm(UserCreationForm):
 	date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class':'input', 'range': '1900-01-01, 2021-12-31'}))
@@ -31,3 +31,13 @@ class LoginForm(forms.Form):
 	def __init__(self, *args, **kwargs):
 		kwargs.setdefault('label_suffix', '')
 		super(LoginForm, self).__init__(*args, **kwargs)
+
+
+class TodoForm(forms.ModelForm):
+	class Meta:
+		model = Todo
+		fields = ('title', 'description')
+		widgets = {
+			'title': forms.TextInput(attrs={'class': 'input', 'placeholder': 'Write here...'}),
+			'description': forms.Textarea(attrs={'class': 'input', 'placeholder': 'Write here...'}),
+		}

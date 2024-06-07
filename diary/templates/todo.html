@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Todo {% endblock title %}
+{% block css %}
+	<link rel="stylesheet" href="{% static "css/todo.css" %}">
+{% endblock css %}
+
+{% block body %}
+	<div class="container todo-page">
+		<div class="row todo-image">
+			<img src="{% static "media/Todo_list.png" %}" alt="" class="todo-img">
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<h4 class='heading text-center'>Add New Task</h4>
+				<form action="{% url "addTodo" %}" class="todo-form" method="POST" >{% csrf_token %}
+					{% for field in todo_form %}
+						<div class="coolinput">
+							<label for="{{field.id_for_label}}" class="text">{{field.label}}</label>
+							{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
+						</div>
+					{% endfor %}
+					<input type="submit" class="btn btn-dark mt-2" value='Add Task'>
+
+					{% if signup_form.non_field_errors %}
+						{% for error in signup_form.non_field_errors %}
+							<p class=" alert alert-danger my-3">{{error}}</p>
+						{% endfor %}
+					{% endif %}
+				</form>
+			</div>
+			<div class="col-sm-8">
+				<h4 class='heading text-center'>Your Tasks</h4>
+				{% if todos %}
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>Description</th>
+								<th>Last Update</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for todo in todos %}
+								<tr>
+									<td>{{todo.title}}</td>
+									<td>{{todo.description}}</td>
+									<td>{{todo.updated_at}}</td>
+									<td>
+										<a href="{% url "updateTodo" todo.id %}" class="btn btn-sm btn-dark"><i class="bi bi-pencil-square"></i></a>
+										<a href="{% url "deleteTodo" todo.id %}" class="btn btn-sm btn-dark"><i class="bi bi-trash3"></i></a>
+									</td>
+								</tr>
+							{% endfor %}
+					</table>
+				{% else %}
+					<p class="text-center">No tasks available</p>
+				{% endif %}
+				
+				
+				{% comment %} {% if todos %}
+					<ul class="list-group">
+						{% for todo in todos %}
+							<li class="list-group-item d-flex justify-content-between align-items-center">
+								<h4>{{todo.title}}</h4>
+								<p>{{todo.description}}</p>
+							</li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					<p class="text-center">No tasks available</p>
+				{% endif %} {% endcomment %}
+			</div>
+		</div>
+	</div>
+
+{% endblock body %}
