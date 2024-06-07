@@ -15,5 +15,9 @@ class CustomUserChangeForm(UserChangeForm):
 		fields = ('email', 'first_name', 'last_name', 'date_of_birth')
 
 class LoginForm(forms.Form):
-	email = forms.EmailField()
-	password = forms.CharField(widget=forms.PasswordInput)
+	email = forms.EmailField(label="Email address", widget=forms.EmailInput(attrs={'class': 'form-control' , 'id':'floatingInput', 'placeholder':'Email'}))
+	password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control', 'id':'floatingPassword', 'placeholder':'Password'}))
+	
+	def __init__(self, *args, **kwargs):
+		kwargs.setdefault('label_suffix', '')
+		super(LoginForm, self).__init__(*args, **kwargs)

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
+
 # Create your views here.
 def user_login(request):
 	context = {}
@@ -17,13 +19,15 @@ def user_login(request):
 				# Redirect to the home page
 				return redirect("home")
 			else:
-				context["login_form"] = login_form
+				# login_form = LoginForm()
+				# context["login_form"] = login_form
 				# Display an error message and the login form
 				messages.error(request, "Invalid email or password")
 
 	else:
 		login_form = LoginForm()
-		context["login_form"] = login_form
+		
+	context["login_form"] = login_form
 	return render(request, "login.html", context)
 
 def user_signup(request):
@@ -57,3 +61,12 @@ def user_logout(request):
 
 def home (request):
 	return render(request, "home.html")
+
+def about(request):
+	return render(request, "about.html")
+
+def plans(request):
+	return render(request, "plans.html")
+
+def myDairy(request):
+	return render(request, "myDiary.html")
