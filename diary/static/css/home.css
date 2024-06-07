@@ -1,11 +1,7 @@
-.home-img{
-	height: 70%;
-}
-
 .home-content{
 	display: flex;
-	flex-wrap: wrap;
-	height: 100vh;
+	/* min-height: 90vh; */
+	justify-content: space-around;
 }
 
 .tag-line{
@@ -26,7 +22,11 @@
 .home-image{
     width: 50%;
     text-align: center;
-    height: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
+}
+.home-img{
+	height: 70vh;
+
 }
 
 .about-text{

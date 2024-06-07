@@ -60,13 +60,26 @@ def user_logout(request):
 
 
 def home (request):
-	return render(request, "home.html")
+	context = {}
+	context['activeHome']="active"
+	# if request.user.is_authenticated:
+	# 	context["user"] = request.user
+	# 	return render(request, "home.html", context)
+	# else:
+	# 	return render(request, "home.html")
+	return render(request, "home.html", context)
 
 def about(request):
-	return render(request, "about.html")
+	context = {}
+	context['activeAbout']="active"
+	return render(request, "about.html", context)
 
 def plans(request):
-	return render(request, "plans.html")
+	context = {}
+	context['activePlans']="active"
+	return render(request, "plans.html", context)
 
 def myDairy(request):
-	return render(request, "myDiary.html")
+	context = {}
+	context['activeDiary']="active"
+	return render(request, "myDiary.html", context)
