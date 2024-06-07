@@ -29,6 +29,10 @@
 	padding: 0 !important;
 }
 
+.active{
+	font-weight: 700;
+}
+
 
 /* notification  */
 .alert{
