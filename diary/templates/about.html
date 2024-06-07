@@ -1,2 +1,42 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} 
+{% load static %} 
+{% block title  %} About Us {% endblock title  %}
+{% block css %}
+	<link rel="stylesheet" href="{% static "css/about.css" %}">
+{% endblock css %}
+
+{% block body %}
+	<div class="container about-page">
+		<div class="about-content">
+			<p class="about-heading">About Us</p>
+			<p class="about-text">
+				<strong>Your Diary</strong>	is a digital diary platform that allows you to capture moments, 
+				reflect on your journey, and ignite personal growth. 
+				Our platform is designed to be accessible, simple, and secure. 
+				You can access your diary on the go from any device, ensuring seamless availability. 
+				Capture your thoughts with ease in a user-friendly interface. Keep your digital diary 
+				entries confidential with robust encryption. 
+			</p>
+			<div class="features">
+				<div class="accessibility feature-item">
+					<i class="bi bi-phone-vibrate-fill"></i>
+					<p class="feature-title">Accessibility</p>
+					<p class="features-text"> Access Your Diary On the Go from Any Device, Ensuring Seamless Availability </p>
+				</div>
+				<div class="simplicity feature-item">
+					<i class="bi bi-lightbulb-fill"></i>
+					<p class="feature-title">Simplicity</p>
+					<p class="features-text"> Effortless, Capture Your Thoughts with Ease in a User-Friendly Interface. </p>
+				</div>
+				<div class="security feature-item">
+					<i class="bi bi-shield-fill-check"></i>
+					<p class="feature-title">Security</p>
+					<p class="features-text">Keep Your Digital Diary Entries Confidential with Robust Encryption. </p>
+				</div>
+			</div>
+		</div>
+		<div class="about-image">
+			<img src="{% static "media/about.png" %}" alt="" class="about-img">
+		</div>
+	</div>
+{% endblock body %}
