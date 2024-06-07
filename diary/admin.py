@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User
+from .models import User, Todo
 from .forms import CustomUserCreationForm, CustomUserChangeForm, LoginForm
 
 
@@ -11,8 +11,9 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ["email", "first_name", "last_name", "date_of_birth", "is_admin"]
+    list_display = ['id', "email", "first_name", "last_name", "date_of_birth", "is_admin"]
     list_filter = ["is_admin"]
+    list_display_links = ["email"]
     fieldsets = [
         (None, {"fields": ["email", "password"]}),
         ("Personal info", {"fields": ["first_name", "last_name", "date_of_birth"]}),
@@ -36,3 +37,10 @@ class UserAdmin(BaseUserAdmin):
 
 # Now register the new UserAdmin...
 admin.site.register(User, UserAdmin)
+
+
+
+@admin.register(Todo)
+class TodoAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user', 'title', 'description', 'created_at', 'updated_at']
+    filter_horizontal = []

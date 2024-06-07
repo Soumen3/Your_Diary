@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm
+from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm, TodoForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
+from .models import Todo, User
 
 # Create your views here.
 def user_login(request):
@@ -74,11 +75,58 @@ def about(request):
 	context['activeAbout']="active"
 	return render(request, "about.html", context)
 
-def plans(request):
+@login_required(login_url="login")
+def todo(request):
 	context = {}
-	context['activePlans']="active"
-	return render(request, "plans.html", context)
+	todo_form = TodoForm()
+	context["todo_form"] = todo_form
+	todos = Todo.objects.filter(user=request.user)
+	context["todos"] = todos
+	context['activeTodo']="active"
+	return render(request, "todo.html", context)
 
+
+@login_required(login_url="login")
+def addTodo (request):
+	if request.method == "POST":
+		form = TodoForm(request.POST)
+		if form.is_valid():
+			todo = form.save(commit=False)
+			todo.user = request.user
+			todo.save()
+			messages.success(request, "You have added a new todo")
+			return redirect("todo")
+		else:
+			messages.error(request, "Error adding a new todo")
+			return redirect("todo")
+	else:
+		form = TodoForm()
+		return render(request, "todo.html", {"form": form})
+
+
+@login_required(login_url="login")
+def updateTodo(request, id):
+	todo = Todo.objects.get(id=id)
+	form = TodoForm(instance=todo)
+	if request.method == "POST":
+		form = TodoForm(request.POST, instance=todo)
+		if form.is_valid():
+			form.save()
+			messages.success(request, "You have updated the todo")
+			return redirect("todo")
+		else:
+			messages.error(request, "Error updating the todo")
+			return redirect("todo")
+	else:
+		return render(request, "updateTodo.html", {"form": form})
+	
+def deleteTodo(request, id):
+	todo = Todo.objects.get(id=id)
+	todo.delete()
+	messages.success(request, "You have deleted the todo")
+	return redirect("todo")
+
+@login_required(login_url="login")
 def myDairy(request):
 	context = {}
 	context['activeDiary']="active"

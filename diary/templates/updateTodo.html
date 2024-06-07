@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title  %} Update Task{% endblock title  %}
+{% block css  %} <link rel="stylesheet" href="{% static "css/updateTodo.css" %}"> {% endblock css  %}
+
+{% block body  %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<h4 class='heading text-center'>Update Task</h4>
+				<form action="" class="update-todo-form" method="POST" >{% csrf_token %}
+					{% for field in form %}
+						<div class="coolinput">
+							<label for="{{field.id_for_label}}" class="text">{{field.label}}</label>
+							{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
+						</div>
+					{% endfor %}
+					<input type="submit" class="btn btn-dark mt-2" value='Update Task'>
+				</form>
+			</div>
+			<div class="col-sm-8">
+				<div class="update-image">
+					<img src="{% static "media/updateTodo.png" %}" alt="" class="update-img">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+{% endblock body  %}

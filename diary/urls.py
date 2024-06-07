@@ -8,5 +8,8 @@ urlpatterns = [
 	path("", views.home, name="home"),
 	path("about/", views.about, name="about"),
 	path("my-diary/", views.myDairy, name="myDiary"),
-	path("plans/", views.plans, name="plans")
+	path("todo/", views.todo, name="todo"),
+	path("todo/add-todo", views.addTodo, name="addTodo"),
+	path("todo/update-todo/<int:id>/", views.updateTodo, name="updateTodo"),
+	path("todo/delete-todo/<int:id>/", views.deleteTodo, name="deleteTodo"),
 ]

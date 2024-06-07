@@ -25,7 +25,7 @@
 						<a class="nav-link {{activeHome}}" aria-current="page" href={% url "home" %}>Home</a>
 						<a class="nav-link {{activeAbout}}" href={% url "about" %}>About Us</a>
 						<a class="nav-link {{activeDiary}}" href={% url "myDiary" %}>My Diary</a>
-						<a class="nav-link {{activePlans}}" href={% url "plans" %}>Plans</a>
+						<a class="nav-link {{activeTodo}}" href={% url "todo" %}>Todo</a>
 					</div>
 					<div class="navbar-nav auth-items">
 						{% if user.is_authenticated %}
