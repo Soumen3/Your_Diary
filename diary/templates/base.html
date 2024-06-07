@@ -18,14 +18,14 @@
 			<div class="container-fluid">
 				<a class="navbar-brand" href={% url "home" %}> <img src="{% static "media/logo.png" %}" alt="" srcset="" class='logo' /> </a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
+					hello
 				</button>
 				<div class="collapse navbar-collapse nav-items" id="navbarNavAltMarkup">
 					<div class="navbar-nav main-nav-item">
 						<a class="nav-link" aria-current="page" href={% url "home" %}>Home</a>
-						<a class="nav-link" href="#">About Us</a>
-						<a class="nav-link" href="#">My Diary</a>
-						<a class="nav-link" href="#">Plans</a>
+						<a class="nav-link" href={% url "about" %}>About Us</a>
+						<a class="nav-link" href={% url "myDiary" %}>My Diary</a>
+						<a class="nav-link" href={% url "plans" %}>Plans</a>
 					</div>
 					<div class="navbar-nav auth-items">
 						{% if user.is_authenticated %}

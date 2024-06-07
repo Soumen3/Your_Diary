@@ -3,9 +3,7 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	/* background-color: #f1f1f1; */
-	border: 1px solid #161616;
-	border-radius: 5px;
+	min-height: 90vh;
 }
 
 .image{
@@ -14,14 +12,12 @@
     align-items: center;
 	width: 50%;
 	height: 100%;
-	/* background-image: url(../images/login.jpg); */
 	background-size: cover;
 	background-position: center;
-	border-left: 1px solid #161616;
 }
 
 .login-img{
-	height: 50vh;
+	height: 80vh;
 	z-index: -10;
 }
 
@@ -30,7 +26,34 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 50%;
+	/* width: 30%; */
 	height: 100%;
 	row-gap: 10px;
+	padding: 2rem;
+}
+
+.form-part{
+	border: 1px solid #000;
+	border-radius: 10px;
+	width: 30%;
+}
+
+.heading{
+	font-size: 2rem;
+	font-weight: bold;
+}
+.extra{
+	display: flex;
+	justify-content: space-between;
+}
+.forgot-pass-text{
+	text-align: right;
+    padding-right: 1rem;
+}
+.reg-text{
+	padding-left: 1rem;
+}
+
+.forgot-pass-text, .reg-text{
+	font-size: 0.8rem;
 }

@@ -15,3 +15,7 @@
 .auth-items{
 	gap: 5px;
 }
+
+.btn{
+	border-radius: 30px !important;
+}
