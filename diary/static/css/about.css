@@ -1,38 +1,39 @@
-.home-img{
-	height: 70%;
-}
 
-.home-content{
+.about-page{
 	display: flex;
-	flex-wrap: wrap;
-	height: 100vh;
+	min-height: 90vh;
+	justify-content: space-around;
 }
 
-.tag-line{
-	width: 50%;
-    /* text-align: center; */
-    /* justify-content: center; */
-	padding-top: 8rem;
-    /* flex-wrap: wrap; */
+.about-img{
+	height: 70vh;
 }
-.tag-text{
+
+.about-heading{
+	font-size: 2.5rem;
+	text-align: center;
 	font-family: "DM Serif Text", serif;
 	font-weight: 400;
-	font-style: bold;
-	font-size: 3rem;
-	color: #161616;
-	max-width: 80%;
-}
-.home-image{
-    width: 50%;
-    text-align: center;
-    height: -webkit-fill-available;
 }
 
 .about-text{
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	color: #919191;
+	font-size: 1.5rem;
+	text-align: center;
+	text-align: justify;
 }
+
+.about-image{
+	display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    max-height: 95vh;
+}
+.about-content{
+	width: 50%;
+}
+
+
 
 .features{
 	display: flex;
@@ -44,6 +45,10 @@
 .feature-item{
 	text-align: center;
 	max-width: 15rem;
+	background-color: #eeeff3;
+	margin-bottom: 1rem;
+	padding: 1rem;
+	border-radius: 1rem;
 }
 
 i{
