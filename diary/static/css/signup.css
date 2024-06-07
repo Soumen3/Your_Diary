@@ -1,0 +1,90 @@
+.signup-page{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	min-height: 90vh;
+	margin-bottom: 1rem;
+}
+
+.image{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 50%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+}
+
+.signup-img{
+	height: 80vh;
+	z-index: -10;
+}
+
+.signup-form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	/* width: 30%; */
+	height: 100%;
+	row-gap: 10px;
+}
+
+.form-part{
+	border: 1px solid #000;
+	border-radius: 10px;
+	width: 30%;
+}
+
+.heading{
+	text-align: center;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.extra{
+	margin-top: 1rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.login-text{
+	padding-left: 1rem;
+}
+
+
+
+/* input field design  */
+.coolinput {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	position: static;
+	max-width: 240px;
+  }
+  
+  .coolinput label.text {
+	font-size: 0.75rem;
+	color: #818CF8;
+	font-weight: 700;
+	position: relative;
+	top: 0.5rem;
+	margin: 0 0 0 7px;
+	padding: 0 3px;
+	background: whitesmoke;
+	width: fit-content;
+  }
+  
+  .coolinput > .input {
+	padding: 11px 10px;
+	font-size: 0.75rem;
+	border: 2px #818CF8 solid;
+	border-radius: 5px;
+	background: whitesmoke;
+  }
+  
+  .coolinput input[type=text].input:focus {
+	outline: none;
+  }
