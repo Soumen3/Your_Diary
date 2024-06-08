@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import User, Todo
+from .models import User, Todo, Page
 
 class CustomUserCreationForm(UserCreationForm):
 	date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class':'input', 'range': '1900-01-01, 2021-12-31'}))
@@ -40,4 +40,13 @@ class TodoForm(forms.ModelForm):
 		widgets = {
 			'title': forms.TextInput(attrs={'class': 'input', 'placeholder': 'Write here...'}),
 			'description': forms.Textarea(attrs={'class': 'input', 'placeholder': 'Write here...'}),
+		}
+
+class PageForm(forms.ModelForm):
+	class Meta:
+		model = Page
+		fields = ('title', 'content')
+		widgets = {
+			'title': forms.TextInput(attrs={'class': 'input', 'placeholder': 'Write here...'}),
+			'content': forms.Textarea(attrs={'class': 'input', 'placeholder': 'Write here...'}),
 		}

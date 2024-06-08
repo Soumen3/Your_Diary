@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm, TodoForm
+from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm, TodoForm, PageForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Todo, User
+from .models import Todo, User, Page
 
 # Create your views here.
 def user_login(request):
@@ -75,6 +75,7 @@ def about(request):
 	context['activeAbout']="active"
 	return render(request, "about.html", context)
 
+
 @login_required(login_url="login")
 def todo(request):
 	context = {}
@@ -103,7 +104,6 @@ def addTodo (request):
 		form = TodoForm()
 		return render(request, "todo.html", {"form": form})
 
-
 @login_required(login_url="login")
 def updateTodo(request, id):
 	todo = Todo.objects.get(id=id)
@@ -120,14 +120,75 @@ def updateTodo(request, id):
 	else:
 		return render(request, "updateTodo.html", {"form": form})
 	
+@login_required(login_url="login")
 def deleteTodo(request, id):
 	todo = Todo.objects.get(id=id)
 	todo.delete()
 	messages.success(request, "You have deleted the todo")
 	return redirect("todo")
 
+
+
 @login_required(login_url="login")
 def myDairy(request):
 	context = {}
+	page_form = PageForm()
+	context["page_form"] = page_form
+	# pages = Page.objects.filter(user=request.user)
+	pages = Page.objects.filter(user=request.user).order_by('-created_at')
+
+	context["pages"] = pages
 	context['activeDiary']="active"
 	return render(request, "myDiary.html", context)
+
+@login_required(login_url="login")
+def writePage(request):
+	context ={}
+	if request.method == "POST":
+		page_form = PageForm(request.POST)
+		print(request.POST)
+		if page_form.is_valid():
+			page = page_form.save(commit=False)
+			page.user = request.user
+			page.save()
+			messages.success(request, "You have added a new page")
+			return redirect("myDiary")
+		else:
+			messages.error(request, "Error adding a new page")
+			return redirect("myDiary")
+	else:
+		page_form = PageForm()
+		context["page_form"] = page_form
+		return render(request, "writePage.html", {"page_form": page_form})
+
+@login_required(login_url="login")
+def updatePage(request, id):
+	context={}
+	page = Page.objects.get(id=id)
+	form = PageForm(instance=page)
+	if request.method == "POST":
+		form = PageForm(request.POST, instance=page)
+		if form.is_valid():
+			form.save()
+			messages.success(request, "You have updated the page")
+			return redirect("myDiary")
+		else:
+			messages.error(request, "Error updating the page")
+			return redirect("myDiary")
+	else:
+		context["page_form"] = form
+		return render(request, "writePage.html", context)
+
+login_required(login_url="login")
+def viewPage(request, id):
+	context = {}
+	page = Page.objects.get(id=id)
+	context["page"] = page
+	return render(request, "viewPage.html", context)
+
+@login_required(login_url="login")
+def deletePage(request, id):
+	page = Page.objects.get(id=id)
+	page.delete()
+	messages.success(request, "You have deleted the page")
+	return redirect("myDiary")
