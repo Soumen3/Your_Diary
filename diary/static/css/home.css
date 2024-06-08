@@ -4,6 +4,13 @@
 	justify-content: space-around;
 }
 
+.greet-text{
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-size: 2rem;
+	color: #817e7e;
+	font-weight: 700;
+}
+
 .tag-line{
 	width: 50%;
     /* text-align: center; */
