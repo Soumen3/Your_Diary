@@ -1,0 +1,21 @@
+
+dialog{
+	border: none;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+dialog::backdrop{
+	background-color: #1111113f;
+}
+
+menu{
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 10px;
+}
+
+button{
+	cursor: pointer;
+}

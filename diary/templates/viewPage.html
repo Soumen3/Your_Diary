@@ -18,7 +18,7 @@
 						<a href="{% url "updatePage" page.id %}" class="btn btn-sm btn-dark mb-1 edit-btn"><i class="bi bi-pencil-square"></i></a>
 					</div>
 					<p class="page-content">{{page.content|safe}}</p>
-					<p class="page-date">Written at: {{page.created_at}}</p>
+					<p class="page-date">{{page.created_at}}</p>
 				</div>
 			</div>
 			<div class="col-sm-5">

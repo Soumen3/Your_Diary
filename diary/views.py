@@ -63,8 +63,8 @@ def user_logout(request):
 def home (request):
 	context = {}
 	context['activeHome']="active"
-	# if request.user.is_authenticated:
-	# 	context["user"] = request.user
+	if request.user.is_authenticated:
+		context["user"] = request.user
 	# 	return render(request, "home.html", context)
 	# else:
 	# 	return render(request, "home.html")
@@ -134,7 +134,6 @@ def myDairy(request):
 	context = {}
 	page_form = PageForm()
 	context["page_form"] = page_form
-	# pages = Page.objects.filter(user=request.user)
 	pages = Page.objects.filter(user=request.user).order_by('-created_at')
 
 	context["pages"] = pages

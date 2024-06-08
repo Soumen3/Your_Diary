@@ -35,3 +35,8 @@
 	display: flex;
 	justify-content: flex-end;
 }
+.page-date{
+	text-align: right;
+	font-size: small;
+	color: #6d6c6c;
+}
