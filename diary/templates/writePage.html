@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Write Diary {% endblock title %}
+{% block css %}
+	<link rel="stylesheet" href="{% static "css/writePage.css" %}">
+{% endblock css %}
+
+{% block body %}
+	<div class="container">
+		<form action="" method="post">{% csrf_token %}
+			{% for field in page_form %}
+				<div class="">
+					<label for="{{field.id_for_label}}" class="">{{field.label}}:</label>
+					{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
+				</div>
+			{% endfor %}
+			<button type="submit" class='btn btn-dark mt-2' formnovalidate >Save Page</button>
+		</form>
+	</div>
+{% endblock body %}
+
+{% block js %}
+	<script src="{% static "js/tinyInject.js" %}"></script>
+{% endblock js %}
