@@ -10,7 +10,7 @@
 		<form action="" method="post">{% csrf_token %}
 			{% for field in page_form %}
 				<div class="">
-					<label for="{{field.id_for_label}}" class="">{{field.label}}:</label>
+					<label for="{{field.id_for_label}}" class="">{{field.label}}*:</label>
 					{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
 				</div>
 			{% endfor %}
