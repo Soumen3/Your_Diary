@@ -21,3 +21,34 @@ td img{
 	height: 50%;
 	width: 50%;
 }
+
+
+/* dialog box design  */
+dialog{
+	border: none;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+dialog h1{
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: #101010;
+	margin: 1rem 0;
+	text-align: center;
+}
+dialog::backdrop{
+	background-color: #1111116e;
+}
+
+menu{
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 10px;
+	gap: 1rem;
+}
+
+button{
+	cursor: pointer;
+}
+

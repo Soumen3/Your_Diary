@@ -34,10 +34,10 @@
 										<td class="page-content-col">{{page.content|truncatewords:10|safe}}</td>
 										<td>{{page.created_at}}</td>
 										<td>
-											<a href="{% url "updatePage" page.id %}" class="btn btn-sm btn-dark mb-1"><i class="bi bi-pencil-square"></i></a>
-											<a href="{% url "deletePage" page.id %}" class="btn btn-sm btn-dark mb-1"><i class="bi bi-trash3"></i></a>
+											{% comment %} <a href="{% url "deletePage" page.id %}" class="btn btn-sm btn-dark mb-1"><i class="bi bi-trash3"></i></a> {% endcomment %}
 											<a href="{% url "viewPage" page.id %}" class="btn btn-sm btn-dark mb-1"><i class="bi bi-eye"></i></a>
-
+											<a href="{% url "updatePage" page.id %}" class="btn btn-sm btn-dark mb-1"><i class="bi bi-pencil-square"></i></a>
+											<a href="" data-id="{{page.id}}" class="btn btn-sm btn-dark delete-btn"><i class="bi bi-trash3"></i></a>
 										</td>
 									</tr>
 								{% endfor %}
@@ -55,5 +55,20 @@
 			</div>
 		</div>
 	</div>
+
+	<dialog id="delete-todo-dialog">
+		<form action="" method="POST" class="delete-todo-form">{% csrf_token %}
+			<h1>Delete Page</h1>
+			<p>Are you sure you want to delete this page?</p>
+			<menu>
+				<button id="closeDialog" class="btn btn-dark">Close</button>
+				<button id="submitDialog" class="btn btn-danger">Delete</button>
+			</menu>
+	</dialog>
+
 {% endblock body  %}
+
+{% block js %}
+	<script src="{% static "js/myDiary.js" %}"></script>
+{% endblock js %}
 
