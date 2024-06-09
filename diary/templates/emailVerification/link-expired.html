@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Expired {% endblock title %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<img src="{% static 'media/link-expired.png' %}" alt="" class="img-fluid">
+			</div>
+			<div class="col-sm-6">
+				<h1 class="heading text-center fs-4 text">Link Expired</h1>
+				<p>
+					The link you have clicked is expired. Please click the button below to get a new link.
+				</p>
+				<a href="{% url "request-new-link-from-email" %}" class="btn btn-dark">Resend Verification Mail</a>
+			</div>
+		</div>
+	</div>
+{% endblock body %}

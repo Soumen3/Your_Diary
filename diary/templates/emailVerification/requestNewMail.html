@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Resend Mail {% endblock title %}
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'css/requestNewMail.css' %}">
+{% endblock css %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<img src="{% static 'media/email-send-msg.png' %}" alt="" class="img-fluid">
+			</div>
+			<div class="col-sm-6">
+				<h1 class="fs-2 fw-medium text-center">Request New Email for Verification</h1>
+				<form method='POST' class="resend-mail-form">{% csrf_token %}
+			
+					<fieldset>
+						{% for field in form %}
+							<div class="coolinput">
+								<label for="{{field.id_for_label}}" class="text">{{field.label}}</label>
+								{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
+							</div>
+						{% endfor %}
+					</fieldset>
+			
+					<div style="margin-top: 1rem;">
+						<button class="btn btn-dark" type="submit">Request New Email</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock body %}
+

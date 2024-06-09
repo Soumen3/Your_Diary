@@ -46,8 +46,10 @@
 
 .extra{
 	margin-top: 1rem;
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 0 1rem;
 }
 
 .login-text{
