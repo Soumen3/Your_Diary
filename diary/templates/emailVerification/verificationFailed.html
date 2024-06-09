@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Verification title {% endblock title %}
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'css/verificationMessage.css' %}">
+{% endblock css %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<img src="{% static 'media/verificationFailed.png' %}" alt="Email sent" class="img-fluid">
+			</div>
+			<div class="col-sm-6 verificatioin-msg">
+				<p class="text text-center fs-4 text">{{msg}}</p>
+			</div>
+		</div>
+	</div>
+
+{% endblock body %}

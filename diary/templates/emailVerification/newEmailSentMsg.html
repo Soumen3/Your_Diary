@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Email Sent {% endblock title %}
+
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<img src="{% static 'media/emailSent.png' %}" alt="Email sent" class="img-fluid">
+			</div>
+			<div class="col-sm-6 instruction">
+				<h1 class='text-center heading'>Email Sent</h1>
+				<p class="instruct">
+					We have sent a new verification link to your email address. Please verify your email address to complete the process.
+				</p>
+				<a href="{% url 'login' %}" class="btn btn-dark">Login</a>
+			</div>
+		</div>
+	</div>
+{% endblock body %}

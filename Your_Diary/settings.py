@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'diary',
+	'verify_email.apps.VerifyEmailConfig',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,15 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = 'noreply<no_reply@domain.com>'
+EXPIRE_AFTER = "10m" # Will expire after 10 minutes from link generation
+LOGIN_URL = 'login'
+MAX_RETRIES = 10
+
+
+# LINK_EXPIRED_TEMPLATE = 'emailVerification/link-expired.html'
+REQUEST_NEW_EMAIL_TEMPLATE = 'emailVerification/requestNewMail.html'
+VERIFICATION_SUCCESS_TEMPLATE = "emailVerification/verificationSuccess.html"
+VERIFICATION_FAILED_TEMPLATE = "emailVerification/verificationFailed.html"
+NEW_EMAIL_SENT_TEMPLATE  = 'emailVerification/newEmailSentMsg.html'

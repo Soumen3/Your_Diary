@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Verification {% endblock title %}
+
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<img src="{% static 'media/email-send-msg.png' %}" alt="" class="img-fluid">
+			</div>
+			<div class="col-sm-6">
+				<h1 class="heading">Email Verification</h1>
+
+				<p>
+					We have sent you an email with instructions on how to verify your email address.
+					If you do not receive the email within a few minutes, please check your spam folder.
+				</p>
+
+				<a href="{% url 'login' %}" class="btn btn-dark">Back to login</a>
+				<p class="text-danger mt-4">
+					The email you have entered is <strong>{{email}}</strong>.
+					If you have entered the wrong email, please <a href="{% url 'signup' %}">register</a> again.
+				</p>
+
+				<p class="fw-light">
+					Don't received any email? 
+					<a href="{% url "request-new-link-from-email" %}" class="">Resend Verification Mail</a>
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock body %}

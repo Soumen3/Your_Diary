@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Todo, User, Page
+from verify_email.email_handler import send_verification_email
 
 # Create your views here.
 def user_login(request):
@@ -36,15 +37,11 @@ def user_signup(request):
 	if request.method == "POST":
 		signup_form = CustomUserCreationForm(request.POST)
 		if signup_form.is_valid():
-			signup_form.save()
+			inactive_user = send_verification_email(request, signup_form)
 			email = signup_form.cleaned_data.get("email")
-			raw_password = signup_form.cleaned_data.get("password1")
-			print(email, raw_password)
-			print(request.POST)
-			user = authenticate(email=email, password=raw_password)
-			login(request, user)
-			messages.success(request, "You have signed up successfully")
-			return redirect("home")
+			request.session['email'] = email
+			messages.success(request, "Verify your email to complete the registration")
+			return redirect("verificationMsg")
 		else:
 			context["signup_form"] = signup_form
 			messages.error(request, "Invalid information")
@@ -59,6 +56,11 @@ def user_logout(request):
 	messages.success(request, "You have logged out successfully")
 	return redirect("home")
 
+def verifiacation(request):
+	context = {}
+	email = request.session['email']
+	context['email'] = email
+	return render(request, "emailVerification/verification_msg.html", context)
 
 def home (request):
 	context = {}

@@ -1,11 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-	path("login/", views.user_login, name="login"),
-	path("logout/", views.user_logout, name="logout"),
-	path("signup/", views.user_signup, name="signup"),
+	path("accounts/login/", views.user_login, name="login"),
+	path("accounts/logout/", views.user_logout, name="logout"),
+	path("accounts/signup/", views.user_signup, name="signup"),
 	path("", views.home, name="home"),
 	path("about/", views.about, name="about"),
 	path("my-diary/", views.myDairy, name="myDiary"),
@@ -24,4 +24,7 @@ urlpatterns = [
 	path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(template_name = "reset_password_confirm.html"), name="password_reset_confirm"),
 	path("reset_password_complete/", auth_views.PasswordResetCompleteView.as_view(template_name = "reset_password_complete.html"), name="password_reset_complete"),
 
+	# -------------------Email Verification------------------- #
+	path('verification/', include('verify_email.urls')),
+	path('verificatoin-msg/', views.verifiacation, name="verificationMsg")
 ]
