@@ -109,6 +109,9 @@ def addTodo (request):
 @login_required(login_url="login")
 def updateTodo(request, id):
 	todo = Todo.objects.get(id=id)
+	if request.user != todo.user:
+		messages.error(request, "You are not authorized to update this todo")
+		return redirect("todo")
 	form = TodoForm(instance=todo)
 	if request.method == "POST":
 		form = TodoForm(request.POST, instance=todo)
@@ -125,6 +128,9 @@ def updateTodo(request, id):
 @login_required(login_url="login")
 def deleteTodo(request, id):
 	todo = Todo.objects.get(id=id)
+	if request.user != todo.user:
+		messages.error(request, "You are not authorized to delete this todo")
+		return redirect("todo")
 	todo.delete()
 	messages.success(request, "You have deleted the todo")
 	return redirect("todo")
@@ -166,6 +172,9 @@ def writePage(request):
 def updatePage(request, id):
 	context={}
 	page = Page.objects.get(id=id)
+	if request.user != page.user:
+		messages.error(request, "You are not authorized to update this page")
+		return redirect("myDiary")
 	form = PageForm(instance=page)
 	if request.method == "POST":
 		form = PageForm(request.POST, instance=page)
@@ -184,12 +193,18 @@ login_required(login_url="login")
 def viewPage(request, id):
 	context = {}
 	page = Page.objects.get(id=id)
+	if request.user != page.user:
+		messages.error(request, "You are not authorized to view this page")
+		return redirect("myDiary")
 	context["page"] = page
 	return render(request, "viewPage.html", context)
 
 @login_required(login_url="login")
 def deletePage(request, id):
 	page = Page.objects.get(id=id)
+	if request.user != page.user:
+		messages.error(request, "You are not authorized to delete this page")
+		return redirect("myDiary")
 	page.delete()
 	messages.success(request, "You have deleted the page")
 	return redirect("myDiary")
