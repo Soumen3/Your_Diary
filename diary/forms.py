@@ -27,14 +27,11 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomUserChangeForm(UserChangeForm):
 	date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'range': '1900-01-01, 2021-12-31'}))
-	class Meta:
+	# password = forms.CharField(widget=forms.PasswordInput(), required=False, disabled=True, label="Password")
+
+	class Meta(UserChangeForm.Meta):
 		model = User
 		fields = ('email', 'first_name', 'last_name', 'date_of_birth')
-	
-	def __init__(self, *args, **kwargs):
-		super(CustomUserChangeForm, self).__init__(*args, **kwargs)
-		self.fields['email'].disabled = True
-		del self.fields['password']  # Remove the password field from the form
 
 class LoginForm(forms.Form):
 	email = forms.EmailField(label="Email address", widget=forms.EmailInput(attrs={'class': 'form-control' , 'id':'floatingInput', 'placeholder':'Email'}))

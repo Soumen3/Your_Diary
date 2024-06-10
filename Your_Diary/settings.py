@@ -152,4 +152,4 @@ MAX_RETRIES = 10
 REQUEST_NEW_EMAIL_TEMPLATE = 'emailVerification/requestNewMail.html'
 VERIFICATION_SUCCESS_TEMPLATE = "emailVerification/verificationSuccess.html"
 VERIFICATION_FAILED_TEMPLATE = "emailVerification/verificationFailed.html"
-NEW_EMAIL_SENT_TEMPLATE  = 'emailVerification/newEmailSentMsg.html'
+NEW_EMAIL_SENT_TEMPLATE = 'emailVerification/newEmailSentMsg.html'
