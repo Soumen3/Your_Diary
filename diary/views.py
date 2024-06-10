@@ -9,6 +9,10 @@ from verify_email.email_handler import send_verification_email
 # Create your views here.
 def user_login(request):
 	context = {}
+	if request.user.is_authenticated:
+		messages.error(request, "You are already logged in")
+		return redirect("home")
+	
 	if request.method == "POST":
 		login_form = LoginForm(request.POST)
 		if login_form.is_valid():
@@ -34,6 +38,10 @@ def user_login(request):
 
 def user_signup(request):
 	context = {}
+	if request.user.is_authenticated:
+		messages.error(request, "You are already logged in")
+		return redirect("home")
+	
 	if request.method == "POST":
 		signup_form = CustomUserCreationForm(request.POST)
 		if signup_form.is_valid():
