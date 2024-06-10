@@ -255,3 +255,9 @@ def update_profile(request):
 		form = CustomUserChangeForm(instance=request.user)
 		context["form"] = form
 		return render(request, "update_profile.html", context)
+
+def delete_profile(request):
+	user = User.objects.get(id=request.user.id)
+	user.delete()
+	messages.success(request, "You have deleted your profile")
+	return redirect("home")

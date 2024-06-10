@@ -17,8 +17,8 @@
 						<p>Date of Birth: {{request.user.date_of_birth}}</p>
 					</div>
 					<div class="functionalities">
-						<a href="{% url "updateProfile" %}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Update profile</a>
-						<a href="{% url "password_change" %}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Change Password</a>
+						<a href="{% url "updateProfile" %}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Update profile <i class="bi bi-arrow-clockwise"></i></a>
+						<a href="{% url "password_change" %}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Change Password <i class="bi bi-shield-lock"></i></a>
 					</div>
 
 				</div>
@@ -36,8 +36,21 @@
 				</div>
 			</div>
 		</div>
-		<a href="#" class="btn btn-danger">Delete account</a>
+		<button class="btn btn-danger" id="delete-account">Delete account</button>
 	</div>
 
+	<dialog id="delete-account-dialog">
+		<div class="delete-account">
+			<h1>Delete Account</h1>
+			<p>Are you sure you want to delete your accoutn?</p>
+			<p>You will lost all your content of diary</p>
+			<menu>
+				<button id="closeDialog" class="btn btn-dark">Close</button>
+				<a href="{% url "deleteProfile" %}"  id="submitDialog" class="btn btn-danger">Delete</a>
+			</menu>
+		</div>
+	</dialog>
 	{% include "sections/footer.html" %}
 {% endblock body %}
+
+{% block js %} <script src="{% static "js/profile.js" %}"></script> {% endblock js %}
