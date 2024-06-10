@@ -7,16 +7,27 @@
 
 {% block body %}
 	<div class="container about-page">
-		<div class="about-content">
-			<p class="about-heading">About Us</p>
-			<p class="about-text">
+		<div class="row">
+			<div class="col-sm-7">
+				<p class="about-heading">About Us</p>
+				<p class="about-text fs-5 text">
 				<strong>Your Diary</strong>	is a digital diary platform that allows you to capture moments, 
 				reflect on your journey, and ignite personal growth. 
 				Our platform is designed to be accessible, simple, and secure. 
 				You can access your diary on the go from any device, ensuring seamless availability. 
 				Capture your thoughts with ease in a user-friendly interface. Keep your digital diary 
 				entries confidential with robust encryption. 
-			</p>
+				</p>
+			</div>
+			<div class="col-sm-5 about-img">
+				<img src="{% static "media/about.png" %}" alt="" class="img-fluid ">
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="container">
+		<div class="row">
 			<div class="features">
 				<div class="accessibility feature-item">
 					<i class="bi bi-phone-vibrate-fill"></i>
@@ -34,9 +45,6 @@
 					<p class="features-text">Keep Your Digital Diary Entries Confidential with Robust Encryption. </p>
 				</div>
 			</div>
-		</div>
-		<div class="about-image">
-			<img src="{% static "media/about.png" %}" alt="" class="about-img">
 		</div>
 	</div>
 
