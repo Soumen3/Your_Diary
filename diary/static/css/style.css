@@ -20,6 +20,23 @@
 	width: fit-content;
 }
 
+/* i{
+	font-size: x-large;
+} */
+
+.nav-bar{
+	display: flex;
+    margin: 0 1rem;
+    align-items: center;
+}
+.navbar{
+	width: 100%;
+}
+.navbar-btn{
+    height: fit-content;
+    /* margin-top: 1rem; */
+    padding: 4px 8px;
+}
 .btn{
 	border-radius: 30px !important;
 }

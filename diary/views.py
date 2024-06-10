@@ -78,6 +78,10 @@ def about(request):
 	return render(request, "about.html", context)
 
 
+
+
+
+# ----------------Todo Views---------------- #
 @login_required(login_url="login")
 def todo(request):
 	context = {}
@@ -137,6 +141,9 @@ def deleteTodo(request, id):
 
 
 
+
+
+# ----------------Diary Views---------------- #
 @login_required(login_url="login")
 def myDairy(request):
 	context = {}
@@ -208,3 +215,15 @@ def deletePage(request, id):
 	page.delete()
 	messages.success(request, "You have deleted the page")
 	return redirect("myDiary")
+
+
+
+# ----------------Profile View---------------- #
+@login_required(login_url="login")
+def profile(request):
+	context = {}
+	pages = Page.objects.filter(user=request.user).count()
+	todos = Todo.objects.filter(user=request.user).count()
+	context["pages"] = pages
+	context["todos"] = todos
+	return render(request, "profile.html", context)

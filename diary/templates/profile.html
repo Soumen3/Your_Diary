@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title  %} {{request.user.first_name}} {% endblock title  %}
+{% block css %}
+	<link rel="stylesheet" href="{% static "css/profile.css" %}">
+{% endblock css %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="profile-card">
+					<div class="profile-info">
+						<h2>{{request.user.first_name}} {{request.user.last_name}}</h2>
+						<p>{{request.user.email}}</p>
+						<p>{{request.user.date_of_birth}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="profile-card">
+					<div class="profile-image">
+						<img src="{% static "media/profile.png" %}" alt="" srcset="" class='img-fluid' />
+					</div>
+					<div class="profile-info">
+						<h2>Diary</h2>
+						<p>Number of Page: {{pages}}</p>
+						<p>Number of Task: {{todos}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock body %}
