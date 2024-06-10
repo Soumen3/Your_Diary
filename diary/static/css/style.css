@@ -54,7 +54,8 @@
 /* notification  */
 .alert{
 	width: fit-content;
-    animation: slideInFromRight 0.5s forwards, slideOutToRight 0.5s forwards;
+    animation: slideInFromRight 0.5s forwards, 
+	slideOutToRight 0.5s forwards;
     animation-delay: 0s, 5s;
 }
 .alert-error{

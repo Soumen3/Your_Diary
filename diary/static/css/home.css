@@ -12,7 +12,7 @@
 }
 
 .tag-line{
-	width: 50%;
+	/* width: 50%; */
     /* text-align: center; */
     /* justify-content: center; */
 	padding-top: 8rem;
@@ -22,7 +22,7 @@
 	font-family: "DM Serif Text", serif;
 	font-weight: 400;
 	font-style: bold;
-	font-size: 3rem;
+	/* font-size: 3rem; */
 	color: #161616;
 	max-width: 80%;
 }
@@ -32,7 +32,7 @@
     /* height: -webkit-fill-available; */
 }
 .home-img{
-	height: 70vh;
+	align-self: center;
 
 }
 
