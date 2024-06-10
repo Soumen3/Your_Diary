@@ -8,17 +8,24 @@
 
 {% block body  %}
 	<div class="container home-content">
-		<div class="tag-line">
-			{% if request.user.is_authenticated %}
-				<p class="greet-text">Hi! {{request.user.first_name}}👋</p>
-			{% endif %}
-			<p class="tag-text">Discover Yourself With A Personalized Digital Diary</p> 
-			<p class="about-text"> Capture Moments, Reflect on Your Journey, and Ignite personal Growth.  </p>
-			<a href="{% url 'myDiary' %}" class="btn btn-dark rounded">Get Started</a>
+		<div class="row">
+			<div class="col-sm-7">
+				<div class="tag-line">
+					{% if request.user.is_authenticated %}
+						<p class="greet-text">Hi! {{request.user.first_name}}👋</p>
+					{% endif %}
+					<p class="tag-text fs-2 text">Discover Yourself With A Personalized Digital Diary</p> 
+					<p class="about-text fs-6 text"> Capture Moments, Reflect on Your Journey, and Ignite personal Growth.  </p>
+					<a href="{% url 'myDiary' %}" class="btn btn-dark rounded">Get Started</a>
+				</div>
+			</div>
+			<div class="col-sm-5 home-img">
+				<img src="{% static "media/home.png" %}" alt="" class="img-fluid ">
+			</div>
 		</div>
-		<div class="home-image">
-			<img src="{% static "media/home.png" %}" alt="" class="home-img">
-		</div>
+		
+		{% comment %} <div class="home-image">
+		</div> {% endcomment %}
 	</div>
 	<div class="features">
 		<div class="accessibility feature-item">
