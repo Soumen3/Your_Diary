@@ -98,3 +98,15 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+# model for site information
+class Site(models.Model):
+    email = models.EmailField(max_length=254)
+    phone = models.CharField(max_length=15)
+    facebook = models.URLField(max_length=200)
+    twitter = models.URLField(max_length=200)
+    instagram = models.URLField(max_length=200)
+
+    def __str__(self):
+        return self.email

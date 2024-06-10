@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, Todo, Page
+from .models import User, Todo, Page, Site
 from .forms import CustomUserCreationForm, CustomUserChangeForm, LoginForm
 
 
@@ -52,3 +52,10 @@ class PageAdmin(admin.ModelAdmin):
 
     class Media:
         js = ('js/tinyInject.js',)  # Specify the path to your JavaScript file
+
+
+
+@admin.register(Site)
+class SiteAdmin(admin.ModelAdmin):
+    list_display = ['id', 'email', 'phone', 'facebook', 'twitter', 'instagram']
+    filter_horizontal = []
