@@ -30,6 +30,11 @@ class CustomUserChangeForm(UserChangeForm):
 	class Meta:
 		model = User
 		fields = ('email', 'first_name', 'last_name', 'date_of_birth')
+	
+	def __init__(self, *args, **kwargs):
+		super(CustomUserChangeForm, self).__init__(*args, **kwargs)
+		self.fields['email'].disabled = True
+		del self.fields['password']  # Remove the password field from the form
 
 class LoginForm(forms.Form):
 	email = forms.EmailField(label="Email address", widget=forms.EmailInput(attrs={'class': 'form-control' , 'id':'floatingInput', 'placeholder':'Email'}))

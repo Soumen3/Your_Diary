@@ -12,6 +12,7 @@ urlpatterns = [
 	path("", views.home, name="home"),
 	path("about/", views.about, name="about"),
 	path('profile/', views.profile, name="profile"),
+	path('profile/update/', views.update_profile, name="updateProfile"),
 
 	# -------------------My Diary------------------- #
 	path("my-diary/", views.myDairy, name="myDiary"),

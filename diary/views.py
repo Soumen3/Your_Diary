@@ -227,3 +227,22 @@ def profile(request):
 	context["pages"] = pages
 	context["todos"] = todos
 	return render(request, "profile.html", context)
+
+@login_required(login_url="login")
+def update_profile(request):
+	context = {}
+	if request.method == "POST":
+		form = CustomUserChangeForm(request.POST, instance=request.user)
+		if form.is_valid():
+			form.save()
+			messages.success(request, "You have updated your profile")
+			return redirect("profile")
+		else:
+			context["form"] = form
+			messages.error(request, "Error updating your profile")
+			return redirect("profile")
+	else:
+		form = CustomUserChangeForm(instance=request.user)
+		context["form"] = form
+		return render(request, "update_profile.html", context)
+	

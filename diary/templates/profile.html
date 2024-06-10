@@ -13,8 +13,13 @@
 				<div class="profile-card">
 					<div class="profile-info">
 						<h2>{{request.user.first_name}} {{request.user.last_name}}</h2>
-						<p>{{request.user.email}}</p>
-						<p>{{request.user.date_of_birth}}</p>
+						<p>Email: {{request.user.email}}</p>
+						<p>Date of Birth: {{request.user.date_of_birth}}</p>
+					</div>
+					<div class="functionalities">
+						<a href="{% url "updateProfile" %}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Update profile</a>
+						<a href="#" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Change Password</a>
+						<a href="#" class="btn btn-dark">Logout from all devieces</a>
 					</div>
 				</div>
 			</div>
