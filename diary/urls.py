@@ -7,6 +7,7 @@ urlpatterns = [
 	path("accounts/login/", views.user_login, name="login"),
 	path("accounts/logout/", views.user_logout, name="logout"),
 	path("accounts/signup/", views.user_signup, name="signup"),
+	path("accounts/logout-form-all-device/", views.logout_from_all_devices, name="logoutAllDevice"),
 
 	# -------------------Extra------------------- #
 	path("", views.home, name="home"),

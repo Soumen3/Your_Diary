@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Todo, User, Page
 from verify_email.email_handler import send_verification_email
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 def user_login(request):
@@ -253,4 +255,16 @@ def update_profile(request):
 		form = CustomUserChangeForm(instance=request.user)
 		context["form"] = form
 		return render(request, "update_profile.html", context)
-	
+
+
+@login_required(login_url="login")
+def logout_from_all_devices(request):
+	# Change the user's password hash
+	request.user.password = make_password(None)
+	request.user.save()
+
+	# Update the session auth hash so that the current session is also invalidated
+	update_session_auth_hash(request, request.user)
+
+	messages.success(request, "You have been logged out from all devices.")
+	return redirect("home")
