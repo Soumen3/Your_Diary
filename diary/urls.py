@@ -8,9 +8,10 @@ urlpatterns = [
 	path("accounts/logout/", views.user_logout, name="logout"),
 	path("accounts/signup/", views.user_signup, name="signup"),
 
-	# -------------------Home and About------------------- #
+	# -------------------Extra------------------- #
 	path("", views.home, name="home"),
 	path("about/", views.about, name="about"),
+	path('profile/', views.profile, name="profile"),
 
 	# -------------------My Diary------------------- #
 	path("my-diary/", views.myDairy, name="myDiary"),
