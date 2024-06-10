@@ -28,10 +28,14 @@ urlpatterns = [
 	path("todo/delete-todo/<int:id>/", views.deleteTodo, name="deleteTodo"),
 
 	# -------------------Password Reset------------------- #
-	path("reset_password/", auth_views.PasswordResetView.as_view(template_name = "reset_password.html"), name="reset_password"),
-	path("reset_password_done/", auth_views.PasswordResetDoneView.as_view(template_name = "reset_password_done.html"), name="password_reset_done"),
-	path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(template_name = "reset_password_confirm.html"), name="password_reset_confirm"),
-	path("reset_password_complete/", auth_views.PasswordResetCompleteView.as_view(template_name = "reset_password_complete.html"), name="password_reset_complete"),
+	path("reset_password/", auth_views.PasswordResetView.as_view(template_name = "password-reset/reset_password.html"), name="reset_password"),
+	path("reset_password_done/", auth_views.PasswordResetDoneView.as_view(template_name = "password-reset/reset_password_done.html"), name="password_reset_done"),
+	path("reset/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(template_name = "password-reset/reset_password_confirm.html"), name="password_reset_confirm"),
+	path("reset_password_complete/", auth_views.PasswordResetCompleteView.as_view(template_name = "password-reset/reset_password_complete.html"), name="password_reset_complete"),
+
+	# -------------------Password Change------------------- #
+	path('password_change/', auth_views.PasswordChangeView.as_view(template_name='password-change/password_change.html'), name='password_change'),
+	path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password-change/password_change_done.html'), name='password_change_done'),
 
 	# -------------------Email Verification------------------- #
 	path('verification/', include('verify_email.urls')),
