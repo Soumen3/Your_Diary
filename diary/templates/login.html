@@ -8,29 +8,37 @@
 
 {% block body  %}
 	<div class="container login-page">
-		<div class="form-part">
-			<form action="" method="post" class="login-form" novalidate>{% csrf_token %}
-				<p class="heading">Login</p>
-				{% for field in login_form %}
-					<div class="form-floating">
-						{{field}} {{field.label_tag}}<small class='text-warning'>{{field.errors|striptags}}</small>
+		<div class="row">
+			<div class="col-sm-5">
+				<div class="form-page">
+					<div class="form-part">
+						<form action="" method="post" class="login-form" novalidate>{% csrf_token %}
+							<p class="heading">Login</p>
+							{% for field in login_form %}
+								<div class="form-floating">
+									{{field}} {{field.label_tag}}<small class='text-warning'>{{field.errors|striptags}}</small>
+								</div>
+							{% endfor %}
+							<input type="submit" class="btn btn-dark" value='Submit'>
+						
+							{% if login_form.non_field_errors %}
+								{% for error in login_form.non_field_errors %}
+									<p class=" alert alert-danger my-3">{{error}}</p>
+								{% endfor %}
+							{% endif %}
+						</form>
+						<div class="extra">
+							<p class='reg-text'>Don't have an account? <a href="{% url 'signup' %}">Register</a></p>
+							<p class="forgot-pass-text"> <a href="{% url "reset_password" %}">Forgot Password</a></p>
+						</div>
 					</div>
-				{% endfor %}
-				<input type="submit" class="btn btn-dark" value='Submit'>
-			
-				{% if login_form.non_field_errors %}
-					{% for error in login_form.non_field_errors %}
-						<p class=" alert alert-danger my-3">{{error}}</p>
-					{% endfor %}
-				{% endif %}
-			</form>
-			<div class="extra">
-				<p class='reg-text'>Don't have an account? <a href="{% url 'signup' %}">Register</a></p>
-				<p class="forgot-pass-text"> <a href="{% url "reset_password" %}">Forgot Password</a></p>
+				</div>	
 			</div>
-		</div>
-		<div class="image">
-			<img src="{% static "media/login.png" %}" alt="" class="login-img">
+			<div class="col-sm-7">	
+				<div class="image">
+					<img src="{% static "media/login.png" %}" alt="" class="img-fluid">
+				</div>
+			</div>
 		</div>
 	</div>
 	
