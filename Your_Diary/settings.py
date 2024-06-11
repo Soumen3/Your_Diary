@@ -148,6 +148,7 @@ LOGIN_URL = 'login'
 MAX_RETRIES = 10
 
 
+# -------------forgot password templates------------- #
 # LINK_EXPIRED_TEMPLATE = 'emailVerification/link-expired.html'
 REQUEST_NEW_EMAIL_TEMPLATE = 'emailVerification/requestNewMail.html'
 VERIFICATION_SUCCESS_TEMPLATE = "emailVerification/verificationSuccess.html"
