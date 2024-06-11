@@ -14,16 +14,18 @@
 			</div>
 			<div class="col-sm-6">
 				<div class="form-part">
-					<p class="heading">Update Profile</p>
+					<p class="fs-3 fw-medium">Update Profile</p>
 					<form method="post" class="update-form"  novalidate >{% csrf_token %}
 						{% for field in form %}
-							<div class="coolinput">
-								<label for="{{field.id_for_label}}" class="text">{{field.label}}</label>
-								{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
-							</div>
+							{% if field.name != 'email' and field.name != 'password' %}
+								<div class="coolinput">
+									<label for="{{field.id_for_label}}" class="text">{{field.label}}</label>
+									{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
+								</div>
+							{% endif %}
 						{% endfor %}
 						<button type="submit" class="btn btn-dark mt-3 px-4" >Save <i class="bi bi-cloud-check"></i></button>
-					
+
 						{% if signup_form.non_field_errors %}
 							{% for error in signup_form.non_field_errors %}
 								<p class=" alert alert-danger my-3">{{error}}</p>

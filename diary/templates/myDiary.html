@@ -18,7 +18,7 @@
 				</div>
 				<div class="diary-body">
 					{% if pages %}
-						<table class="table table-hover">
+						<table class="table table-hover table-striped">
 							<thead>
 								<tr>
 									<th>Title</th>
@@ -30,7 +30,7 @@
 							<tbody>
 								{% for page in pages %}
 									<tr>
-										<td>{{page.title}}</td>
+										<td class="fw-bolder">{{page.title}}</td>
 										<td class="page-content-col">{{page.content|truncatewords:10|safe}}</td>
 										<td>{{page.created_at}}</td>
 										<td>
@@ -48,10 +48,10 @@
 					{% endif %}
 				</div>
 			</div>
-			<div class="col-sm-4">
-				<div class="diary-image">
-					<img src="{% static "media/Diary.png" %}" alt="" class="diary-img">
-				</div>
+			<div class="col-sm-4 img-part">
+				{% comment %} <div class="diary-image"> {% endcomment %}
+					<img src="{% static "media/Diary.png" %}" alt="" class="img-fluid">
+				{% comment %} </div> {% endcomment %}
 			</div>
 		</div>
 	</div>
