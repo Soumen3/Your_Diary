@@ -30,13 +30,13 @@
 					</div>
 					<div class="profile-info">
 						<h2>Diary</h2>
-						<p>Number of Page: {{pages}}</p>
-						<p>Number of Task: {{todos}}</p>
+						<p>Number of Page: <strong>{{pages}}</strong> <a href="{% url "writePage" %}" class="btn btn-dark p-1 mx-2">Write <i class="bi bi-pen"></i></a></p>
+						<p>Number of Task: <strong>{{todos}}</strong> <a href="{% url "todo" %}" class="btn btn-dark p-1 mx-2">Add Task <i class="bi bi-clipboard2-check"></i></a></p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-danger" id="delete-account">Delete account</button>
+		<button class="btn btn-danger" id="delete-account">Delete account <i class="bi bi-person-x"></i></button>
 	</div>
 
 	<dialog id="delete-account-dialog">

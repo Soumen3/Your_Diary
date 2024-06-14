@@ -20,7 +20,7 @@
 							{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
 						</div>
 					{% endfor %}
-					<input type="submit" class="btn btn-dark mt-2" value='Add Task'>
+					<button type="submit" class="btn btn-dark mt-2">Add Task <i class="bi bi-clipboard2-check"></i></button>
 
 					{% if signup_form.non_field_errors %}
 						{% for error in signup_form.non_field_errors %}

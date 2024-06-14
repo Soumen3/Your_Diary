@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'diary',
 	'verify_email.apps.VerifyEmailConfig',
+	'widget_tweaks',
 ]
 
 MIDDLEWARE = [
