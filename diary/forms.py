@@ -39,6 +39,7 @@ class CustomUserChangeForm(UserChangeForm):
 		model = User
 		fields = ('email', 'first_name', 'last_name', 'date_of_birth')
 
+
 		
 	
 class LoginForm(forms.Form):

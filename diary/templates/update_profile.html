@@ -21,7 +21,12 @@
                             {% if field.name != 'password' %}
                                 <div class="coolinput">
                                     <label for="{{field.id_for_label}}" class="text">{{field.label}}</label>
+									{% if field.name == 'email' %}
 										{{field}}
+										<small class="text-warning">If you update the email, you have to verify the new email. Until your account will be logged out </small>
+									{% else %}
+										{{field}}
+									{% endif %}
                                     <small class='text-warning'>{{field.errors|striptags}}</small>
                                 </div>
                             {% endif %}
