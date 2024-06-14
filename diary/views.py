@@ -243,7 +243,17 @@ def update_profile(request):
 	context = {}
 	if request.method == "POST":
 		form = CustomUserChangeForm(request.POST, instance=request.user)
+		print("user email: ", request.user.email)
+		previous_email = request.user.email
 		if form.is_valid():
+			print("form email: ", form.cleaned_data['email'])
+			if form.cleaned_data['email'] != previous_email:
+				print("email changed")
+				inactive_user = send_verification_email(request, form)
+				email = form.cleaned_data['email']
+				request.session['email'] = email
+				messages.success(request, "Verify your email to complete the registration")
+				return redirect("verificationMsg")
 			form.save()
 			messages.success(request, "You have updated your profile")
 			return redirect("profile")
