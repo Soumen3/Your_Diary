@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 	'diary',
 	'verify_email.apps.VerifyEmailConfig',
 	'widget_tweaks',
+	'admin_honeypot'
 ]
 
 MIDDLEWARE = [
