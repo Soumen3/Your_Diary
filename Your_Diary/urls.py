@@ -15,11 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path, include
+from django.conf.urls.static import static
 # from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('owner/', admin.site.urls),
     path('', include('diary.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = 'diary.views.custom_404_view'

@@ -271,3 +271,7 @@ def delete_profile(request):
 	user.delete()
 	messages.success(request, "You have deleted your profile")
 	return redirect("home")
+
+
+def custom_404_view(request , exception):
+	return render(request, "invalid_url.html", status=404)

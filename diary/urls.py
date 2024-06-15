@@ -40,5 +40,5 @@ urlpatterns = [
 
 	# -------------------Email Verification------------------- #
 	path('verification/', include('verify_email.urls')),
-	path('verificatoin-msg/', views.verifiacation, name="verificationMsg")
+	path('verificatoin-msg/', views.verifiacation, name="verificationMsg"),
 ]

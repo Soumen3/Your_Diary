@@ -1,7 +1,3 @@
-1. Any one can access any diary page or todo by the id in url. ✅
-2. Change password is not implemented. ✅
-3. user profile is not implemented. ✅
-4. user can't delete his account. ✅
+
 5. invalid url is not handled. 
 6. in forgot password verify the email is already register or not.
-7. after update profile the email must verify..
