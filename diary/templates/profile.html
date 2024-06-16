@@ -56,8 +56,12 @@
 					</div>
 					<div class="profile-info">
 						<h2>Diary</h2>
-						<p>Number of Page: <strong>{{pages}}</strong> <a href="{% url "writePage" %}" class="btn  p-1 mx-2 {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}">Write <i class="bi bi-pen"></i></a></p>
-						<p>Number of Task: <strong>{{todos}}</strong> <a href="{% url "todo" %}" class="btn  p-1 mx-2 {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}">Add Task <i class="bi bi-clipboard2-check"></i></a></p>
+						<p>Number of Page: <strong>{{pages}}</strong> 
+							<a href="{% url "writePage" %}" class="btn  p-1 mx-2 {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}">Write <i class="bi bi-pen"></i></a>
+						</p>
+						<p>Number of Task: <strong>{{todos}}</strong> 
+							<a href="{% url "todo" %}" class="btn  p-1 mx-2 {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}">Add Task <i class="bi bi-clipboard2-check"></i></a>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -81,27 +85,45 @@
 
 {% block js %} 
 	<script src="{% static "js/profile.js" %}"></script> 
-	{% comment %} <script>
-	$(document).ready(function(e){
-		$('#theme-switch').change(function(){
-			$.ajax({
-				url: "{% url 'changeTheme' %}",
-				method: 'POST',
-				data: {
-					'theme': this.checked ? 'dark' : 'light',
-					'csrfmiddlewaretoken': '{{ csrf_token }}'
-				},
-				success: function(data){
-					// alert('Theme changed successfully');
-					console.log("Theme changed successfully");
-					if (data.theme == 'dark') {
-						$('body').removeClass('light-theme').addClass('dark-theme');
-					} else {
-						$('body').removeClass('dark-theme').addClass('light-theme');
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(e){
+			$('#theme-switch').change(function(){
+				$.ajax({
+					url: "{% url 'changeTheme' %}",
+					method: 'POST',
+					data: {
+						'theme': this.checked ? 'dark' : 'light',
+						'csrfmiddlewaretoken': '{{ csrf_token }}'
+					},
+					success: function(data){
+						console.log("Theme changed successfully");
+						if (data.theme == 'dark') {
+							$('body').removeClass('light-theme').addClass('dark-theme');
+							// logo chnager 
+							$('#logo').attr('src', '{% static "media/logo-light.png" %}');
+							
+							// button color changer
+							$('.btn-dark').removeClass('btn-dark').addClass('btn-secondary');
+
+							// navbar navlink background  color change
+							$('.nav-link').removeClass('text-dark').addClass('text-light');
+
+						} else {
+							$('body').removeClass('dark-theme').addClass('light-theme');
+							// logo chnager 
+							$('#logo').attr('src', '{% static "media/logo.png" %}');
+
+							// button color changer
+							$('.btn-secondary').removeClass('btn-secondary').addClass('btn-dark');
+
+							// navbar navlink background  color change
+							$('.nav-link').removeClass('text-light').addClass('text-dark');
+						
+						}
 					}
-				}
+				});
 			});
 		});
-	});
-	</script> {% endcomment %}
+	</script>
 {% endblock js %}
