@@ -14,7 +14,7 @@
 					{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
 				</div>
 			{% endfor %}
-			<button type="submit" class='btn btn-dark mt-2' formnovalidate >Save Page <i class="bi bi-cloud-check"></i></button>
+			<button type="submit" class="btn mt-2 {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}" formnovalidate >Save Page <i class="bi bi-cloud-check"></i></button>
 		</form>
 	</div>
 {% endblock body %}

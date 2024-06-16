@@ -20,8 +20,34 @@
 						<a href="{% url "updateProfile" %}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Update profile <i class="bi bi-arrow-clockwise"></i></a>
 						<a href="{% url "password_change" %}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Change Password <i class="bi bi-shield-lock"></i></a>
 					</div>
+				</div>
+
+				<div class="theme-section" >
+					<input id="theme-switch" name='theme' type="checkbox" {% if request.user.theme.theme == 'dark' %}checked{% endif %}>
+					<div class="app">
+						<div class="body">
+							
+							<div class="phone">
+								<div class="content">
+									<div class="circle">
+										<div class="crescent"></div>
+									</div>
+								
+									<label for="theme-switch">
+										<div class="toggle"></div>
+										<div class="names">
+											<p class="light">Light</p>
+											<p class="dark">Dark</p>
+										</div>
+									</label>								
+								</div>
+							</div>
+						</div>
+					
+					</div>
 
 				</div>
+
 			</div>
 			<div class="col-md-6">
 				<div class="profile-card">
@@ -30,8 +56,8 @@
 					</div>
 					<div class="profile-info">
 						<h2>Diary</h2>
-						<p>Number of Page: <strong>{{pages}}</strong> <a href="{% url "writePage" %}" class="btn btn-dark p-1 mx-2">Write <i class="bi bi-pen"></i></a></p>
-						<p>Number of Task: <strong>{{todos}}</strong> <a href="{% url "todo" %}" class="btn btn-dark p-1 mx-2">Add Task <i class="bi bi-clipboard2-check"></i></a></p>
+						<p>Number of Page: <strong>{{pages}}</strong> <a href="{% url "writePage" %}" class="btn  p-1 mx-2 {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}">Write <i class="bi bi-pen"></i></a></p>
+						<p>Number of Task: <strong>{{todos}}</strong> <a href="{% url "todo" %}" class="btn  p-1 mx-2 {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}">Add Task <i class="bi bi-clipboard2-check"></i></a></p>
 					</div>
 				</div>
 			</div>
@@ -53,4 +79,29 @@
 	{% include "sections/footer.html" %}
 {% endblock body %}
 
-{% block js %} <script src="{% static "js/profile.js" %}"></script> {% endblock js %}
+{% block js %} 
+	<script src="{% static "js/profile.js" %}"></script> 
+	{% comment %} <script>
+	$(document).ready(function(e){
+		$('#theme-switch').change(function(){
+			$.ajax({
+				url: "{% url 'changeTheme' %}",
+				method: 'POST',
+				data: {
+					'theme': this.checked ? 'dark' : 'light',
+					'csrfmiddlewaretoken': '{{ csrf_token }}'
+				},
+				success: function(data){
+					// alert('Theme changed successfully');
+					console.log("Theme changed successfully");
+					if (data.theme == 'dark') {
+						$('body').removeClass('light-theme').addClass('dark-theme');
+					} else {
+						$('body').removeClass('dark-theme').addClass('light-theme');
+					}
+				}
+			});
+		});
+	});
+	</script> {% endcomment %}
+{% endblock js %}

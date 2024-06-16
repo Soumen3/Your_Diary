@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, Todo, Page, Site
+from .models import User, Todo, Page, Site, Theme
 from .forms import CustomUserCreationForm, CustomUserChangeForm, LoginForm
 
 
@@ -59,3 +59,9 @@ class PageAdmin(admin.ModelAdmin):
 class SiteAdmin(admin.ModelAdmin):
     list_display = ['id', 'email', 'phone', 'facebook', 'twitter', 'instagram']
     filter_horizontal = []
+
+
+
+@admin.register(Theme)  # register the model
+class ThemeAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user', 'theme', 'change_time']

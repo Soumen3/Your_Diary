@@ -92,6 +92,16 @@
 }
 
 
+/* theme changer */
+.dark-theme{
+	background-color: #26242e;
+	color: white;
+}
+.light-theme{
+	background-color: white;
+	color: black;
+}
+
 
 /* all scrollbar edit  */
 body::-webkit-scrollbar {

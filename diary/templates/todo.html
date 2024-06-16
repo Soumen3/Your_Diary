@@ -20,7 +20,7 @@
 							{{field}}  <small class='text-warning'>{{field.errors|striptags}}</small>
 						</div>
 					{% endfor %}
-					<button type="submit" class="btn btn-dark mt-2">Add Task <i class="bi bi-clipboard2-check"></i></button>
+					<button type="submit" class="btn mt-2 {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}">Add Task <i class="bi bi-clipboard2-check"></i></button>
 
 					{% if signup_form.non_field_errors %}
 						{% for error in signup_form.non_field_errors %}
@@ -32,7 +32,7 @@
 			<div class="col-sm-8">
 				<h4 class='heading text-center'>Your Tasks</h4>
 				{% if todos %}
-					<table class="table table-hover table-striped">
+					<table class="table table-hover table-striped {% if request.user.theme.theme == 'dark' %} table-dark {% endif %}">
 						<thead>
 							<tr>
 								<th>Title</th>

@@ -11,14 +11,14 @@
 		<div class="row">
 			<div class="col-sm-8 page-part">
 				<div class="write-button">
-					<a href="{% url "writePage" %}" class="btn btn-dark write-btn">Write Diary <i class="bi bi-pen"></i></a>
+					<a href="{% url "writePage" %}" class="btn write-btn {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}">Write Diary <i class="bi bi-pen"></i></a>
 				</div>
 				<div class="diary-header">
 					<h4 class='heading text-center'>My Diary</h4>
 				</div>
 				<div class="diary-body">
 					{% if pages %}
-						<table class="table table-hover table-striped">
+						<table class="table table-hover table-striped {% if request.user.theme.theme == 'dark' %} table-dark {% endif %}">
 							<thead>
 								<tr>
 									<th>Title</th>
