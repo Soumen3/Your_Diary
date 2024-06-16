@@ -19,9 +19,9 @@
 			<nav class="navbar navbar-expand-lg bg-transparant">
 				<div class="container-fluid">
 					{% if request.user.theme.theme == 'dark' %}
-						<a class="navbar-brand" href={% url "home" %}> <img id="logo" src="{% static "media/logo-light.png" %}" alt="" srcset="" class='logo img-fluid' /> </a>
+						<a class="navbar-brand" href={% url "home" %}> <img id="logo" src="{% static "media/Logo-light.png" %}" alt="" srcset="" class='logo img-fluid' /> </a>
 					{% else %}
-						<a class="navbar-brand" href={% url "home" %}> <img id="logo" src="{% static "media/logo.png" %}" alt="" srcset="" class='logo img-fluid' /> </a>
+						<a class="navbar-brand" href={% url "home" %}> <img id="logo" src="{% static "media/Logo.png" %}" alt="" srcset="" class='logo img-fluid' /> </a>
 					{% endif %}
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 						<i class="bi bi-list"></i>

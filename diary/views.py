@@ -53,6 +53,8 @@ def user_signup(request):
 			email = signup_form.cleaned_data.get("email")
 			request.session['email'] = email
 			messages.success(request, "Verify your email to complete the registration")
+			theme = Theme.objects.create(user=inactive_user)
+			theme.save()
 			return redirect("verificationMsg")
 		else:
 			context["signup_form"] = signup_form
