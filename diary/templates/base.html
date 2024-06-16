@@ -81,48 +81,5 @@
 		{% block js %}{% endblock js %}
 	</body>
 	{% comment %} logo changer  {% endcomment %}
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script>
-		$(document).ready(function(e){
-			$('#theme-switch').change(function(){
-				$.ajax({
-					url: "{% url 'changeTheme' %}",
-					method: 'POST',
-					data: {
-						'theme': this.checked ? 'dark' : 'light',
-						'csrfmiddlewaretoken': '{{ csrf_token }}'
-					},
-					success: function(data){
-						console.log("Theme changed successfully");
-						if (data.theme == 'dark') {
-							// logo chnager 
-							$('body').removeClass('light-theme').addClass('dark-theme');
-							$('#logo').attr('src', '{% static "media/logo-light.png" %}');
-							
-							// button color changer
-							$('.btn-dark').removeClass('btn-dark').addClass('btn-secondary');
 
-							// navbar navlink background  color change
-							$('.nav-link').removeClass('text-dark').addClass('text-light');
-
-
-
-						} else {
-							// logo chnager 
-							$('body').removeClass('dark-theme').addClass('light-theme');
-							$('#logo').attr('src', '{% static "media/logo.png" %}');
-
-							// button color changer
-							$('.btn-secondary').removeClass('btn-secondary').addClass('btn-dark');
-
-							// navbar navlink background  color change
-							$('.nav-link').removeClass('text-light').addClass('text-dark');
-						
-						}
-					}
-				});
-			});
-		});
-	</script>
 </html>
