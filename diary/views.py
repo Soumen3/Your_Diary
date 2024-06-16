@@ -3,10 +3,12 @@ from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm, Todo
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Todo, User, Page
+from .models import Todo, User, Page, Theme
 from verify_email.email_handler import send_verification_email
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.hashers import make_password
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def user_login(request):
@@ -273,5 +275,22 @@ def delete_profile(request):
 	return redirect("home")
 
 
+#-------------------Theme Changer-------------------#
+
+@csrf_exempt
+def change_theme(request):
+	if request.method == 'POST':
+		theme = request.POST.get('theme')
+		print(theme)
+		if theme in dict(Theme.THEME_CHOICES):
+			request.user.theme.theme = theme
+			request.user.theme.save()
+			return JsonResponse({'status': 'success', 'theme':theme}, status=200)
+	return JsonResponse({'status': 'error'}, status=400)
+
+
+#-----------------404 View-----------------#
 def custom_404_view(request , exception):
 	return render(request, "invalid_url.html", status=404)
+
+

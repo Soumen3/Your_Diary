@@ -14,24 +14,28 @@
 		<link rel="stylesheet" href="{% static "css/style.css" %}">
 		{% block css %}{% endblock css %}
 	</head>
-  	<body>
+  	<body class="{% if request.user.theme.theme == 'dark' %} dark-theme {% else %} light-theme {% endif %}">
 		<div class="nav-bar">
 			<nav class="navbar navbar-expand-lg bg-transparant">
 				<div class="container-fluid">
-					<a class="navbar-brand" href={% url "home" %}> <img src="{% static "media/logo.png" %}" alt="" srcset="" class='logo img-fluid' /> </a>
+					{% if request.user.theme.theme == 'dark' %}
+						<a class="navbar-brand" href={% url "home" %}> <img id="logo" src="{% static "media/logo-light.png" %}" alt="" srcset="" class='logo img-fluid' /> </a>
+					{% else %}
+						<a class="navbar-brand" href={% url "home" %}> <img id="logo" src="{% static "media/logo.png" %}" alt="" srcset="" class='logo img-fluid' /> </a>
+					{% endif %}
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 						<i class="bi bi-list"></i>
 					</button>
 					<div class="collapse navbar-collapse nav-items" id="navbarNavAltMarkup">
 						<div class="navbar-nav main-nav-item">
-							<a class="nav-link {{activeHome}}" aria-current="page" href={% url "home" %}>Home</a>
-							<a class="nav-link {{activeAbout}}" href={% url "about" %}>About Us</a>
-							<a class="nav-link {{activeDiary}}" href={% url "myDiary" %}>My Diary</a>
-							<a class="nav-link {{activeTodo}}" href={% url "todo" %}>Todo</a>
+							<a class="nav-link {{activeHome}} {% if request.user.theme.theme == 'dark' %} text-light {% else %} text-dark {% endif %}" aria-current="page" href={% url "home" %}>Home</a>
+							<a class="nav-link {{activeAbout}} {% if request.user.theme.theme == 'dark' %} text-light {% else %} text-dark {% endif %}" href={% url "about" %}>About Us</a>
+							<a class="nav-link {{activeDiary}}  {% if request.user.theme.theme == 'dark' %} text-light {% else %} text-dark {% endif %}" href={% url "myDiary" %}>My Diary</a>
+							<a class="nav-link {{activeTodo}} {% if request.user.theme.theme == 'dark' %} text-light {% else %} text-dark {% endif %}" href={% url "todo" %}>Todo</a>
 						</div>
 						<div class="navbar-nav auth-items">
 							{% if user.is_authenticated %}
-								<a class="btn btn-dark" id="logout-btn" href="">Logout <i class="bi bi-box-arrow-right"></i></a>
+								<a class="btn {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}" id="logout-btn" href="">Logout <i class="bi bi-box-arrow-right"></i></a>
 							{% else %}
 								<a class="btn btn-dark" href="{% url 'login' %}">Login <i class="bi bi-box-arrow-in-left"></i></a>
 								<a class="btn btn-dark " href="{% url 'signup' %}">Sign Up <i class="bi bi-clipboard2-plus"></i></a>
@@ -41,7 +45,7 @@
 				</div>
 			</nav>
 			{% if user.is_authenticated %}
-				<a class="btn btn-dark navbar-btn rounded-circle" href="{% url "profile" %}">
+				<a class="btn navbar-btn rounded-circle {% if request.user.theme.theme == 'dark' %} btn-secondary {% else %} btn-dark {% endif %}" href="{% url "profile" %}">
 					<i class="bi bi-person-fill"></i>
 				</a>
 			{% endif %}
@@ -76,4 +80,49 @@
 		<script src="{% static "js/script.js" %}"></script>
 		{% block js %}{% endblock js %}
 	</body>
+	{% comment %} logo changer  {% endcomment %}
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(e){
+			$('#theme-switch').change(function(){
+				$.ajax({
+					url: "{% url 'changeTheme' %}",
+					method: 'POST',
+					data: {
+						'theme': this.checked ? 'dark' : 'light',
+						'csrfmiddlewaretoken': '{{ csrf_token }}'
+					},
+					success: function(data){
+						console.log("Theme changed successfully");
+						if (data.theme == 'dark') {
+							// logo chnager 
+							$('body').removeClass('light-theme').addClass('dark-theme');
+							$('#logo').attr('src', '{% static "media/logo-light.png" %}');
+							
+							// button color changer
+							$('.btn-dark').removeClass('btn-dark').addClass('btn-secondary');
+
+							// navbar navlink background  color change
+							$('.nav-link').removeClass('text-dark').addClass('text-light');
+
+
+
+						} else {
+							// logo chnager 
+							$('body').removeClass('dark-theme').addClass('light-theme');
+							$('#logo').attr('src', '{% static "media/logo.png" %}');
+
+							// button color changer
+							$('.btn-secondary').removeClass('btn-secondary').addClass('btn-dark');
+
+							// navbar navlink background  color change
+							$('.nav-link').removeClass('text-light').addClass('text-dark');
+						
+						}
+					}
+				});
+			});
+		});
+	</script>
 </html>

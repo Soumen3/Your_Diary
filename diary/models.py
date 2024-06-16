@@ -110,3 +110,16 @@ class Site(models.Model):
 
     def __str__(self):
         return self.email
+    
+class Theme(models.Model):
+    THEME_CHOICES = [
+        ('light', 'Light'),
+        ('dark', 'Dark'),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
+    theme = models.CharField(max_length=50, choices=THEME_CHOICES, default='system')
+    change_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.theme

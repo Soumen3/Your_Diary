@@ -12,7 +12,7 @@ document.addEventListener(('DOMContentLoaded'), () => {
 	const openDialogButton = document.querySelectorAll('.delete-btn');
 	const closeDialogButton = document.querySelector('#closeDialog');
 
-	console.log(openDialogButton);
+	// console.log(openDialogButton);
 	
 	openDialogButton.forEach(function(button) {
 		button.addEventListener('click', function(e) {
@@ -32,7 +32,7 @@ document.addEventListener(('DOMContentLoaded'), () => {
 
 
 	document.querySelectorAll('.delete-btn').forEach(function(button) {
-		console.log(button);
+		// console.log(button);
 		
 		button.addEventListener('click', function() {
 			var todoId = this.getAttribute('data-id');

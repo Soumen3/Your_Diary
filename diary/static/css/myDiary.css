@@ -13,7 +13,7 @@
 .heading{
 	font-size: 2rem;
 	font-weight: 700;
-	color: #000;
+	/* color: #000; */
 }
 
 .write-button{
@@ -23,6 +23,9 @@
 
 .page-content-col{
 	width: 40%;
+}
+.my-table {
+    background-color: #0f0e0e ;
 }
 
 td img{
