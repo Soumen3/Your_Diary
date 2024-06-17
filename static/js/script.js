@@ -17,3 +17,11 @@ document.addEventListener(('DOMContentLoaded'), () => {
 		dialog.close();
 	});
 });
+
+
+
+// ----------- Loader ----------------//
+window.onload = function() {
+    var loader = document.querySelector('.loader-page');
+    loader.style.display = 'none';
+};
