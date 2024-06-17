@@ -17,7 +17,7 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = [
         (None, {"fields": ["email", "password"]}),
         ("Personal info", {"fields": ["first_name", "last_name", "date_of_birth"]}),
-        ("Permissions", {"fields": ["is_admin"]}),
+        ("Permissions", {"fields": ["is_admin", "is_active"]}),
     ]
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -30,7 +30,7 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
     ]
-    search_fields = ["email"]
+    search_fields = ["email", "first_name", "last_name", "date_of_birth"]
     ordering = ["email"]
     filter_horizontal = []
 
@@ -44,11 +44,13 @@ admin.site.register(User, UserAdmin)
 class TodoAdmin(admin.ModelAdmin):
     list_display = ['id', 'user', 'title', 'description', 'created_at', 'updated_at']
     filter_horizontal = []
+    search_fields = ['title', 'description', 'user__email', "user__first_name", "user__last_name"]
 
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
     list_display = ['id', 'user', 'title', 'content', 'created_at', 'updated_at']
     filter_horizontal = []
+    search_fields = ['title', 'content', 'user__email', "user__first_name", "user__last_name"]
 
     class Media:
         js = ('js/tinyInject.js',)  # Specify the path to your JavaScript file
